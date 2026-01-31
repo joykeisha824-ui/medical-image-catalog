@@ -1,36 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Title</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-</section>
+    /* Sticky header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
 
-  <h2>Conditions Library</h2>
+    header nav {
+      padding: 1rem;
+    }
 
-  <div class="card">
-    <h3>Acne Vulgaris</h3>
-    <p><strong>Light skin tones:</strong> Erythema (redness), inflammatory papules, pustules.</p>
-    <p><strong>Medium skin tones:</strong> Hyperpigmented papules, nodules, less visible redness.</p>
-    <p><strong>Deep skin tones:</strong> Post-inflammatory hyperpigmentation, keloid risk, subtle inflammation.</p>
-    <p><em>Note:</em> Pigment changes and scarring may be more prominent in darker skin tones.</p>
-  </div>
+    header nav div {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      gap: 1.5rem;
+      font-weight: 500;
+    }
 
-  <div class="card">
-    <h3>Atopic Dermatitis (Eczema)</h3>
-    <p><strong>Light skin tones:</strong> Red, inflamed patches with scaling.</p>
-    <p><strong>Medium skin tones:</strong> Purple or gray patches, lichenification.</p>
-    <p><strong>Deep skin tones:</strong> Ashy, thickened, darkened skin with less visible redness.</p>
-    <p><em>Note:</em> Erythema may be under-recognized in deeper skin tones.</p>
-  </div>
+    header nav a {
+      text-decoration: none;
+      color: #000;
+    }
 
-  <div class="card">
-    <h3>Psoriasis</h3>
-    <p><strong>Light skin tones:</strong> Bright red plaques with silvery scale.</p>
-    <p><strong>Medium skin tones:</strong> Salmon-colored plaques with gray scale.</p>
-    <p><strong>Deep skin tones:</strong> Violet or dark brown plaques with minimal redness.</p>
-    <p><em>Note:</em> Psoriasis is often underdiagnosed in patients with darker skin.</p>
-  </div>
-</section>
+    header nav a:hover {
+      color: #2563eb;
+    }
 
-<nav style="background:#ffffff; border-bottom:1px solid #e5e7eb; padding:1rem;">
-  <div style="max-width:900px; margin:auto; display:flex; gap:1.5rem; font-weight:500;">
-    
-  </div>
-</nav>
+    main {
+      padding-top: 80px; /* space for sticky header */
+    }
+
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    /* Card styles for Conditions Library */
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      background-color: #f9f9f9;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .card p {
+      margin: 0.3rem 0;
+    }
+
+    em {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div>
+        <a href="#about">About</a>
+        <a href="#conditions">Conditions</a>
+        <a href="#sources">Sources</a>
+        <a href="#founder">Founder</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2>About</h2>
+      <p>Write something about your website here.</p>
+    </section>
+
+    <section id="conditions">
+      <h2>Conditions Library</h2>
+
+      <div class="card">
+        <h3>Acne Vulgaris</h3>
+        <p><strong>Light skin tones:</strong> Erythema (redness), inflammatory papules, pustules.</p>
+        <p><strong>Medium skin tones:</strong> Hyperpigmented papules, nodules, less visible redness.</p>
+        <p><strong>Deep skin tones:</strong> Post-inflammatory hyperpigmentation, keloid risk, subtle inflammation.</p>
+        <p><em>Note:</em> Pigment changes and scarring may be more prominent in darker skin tones.</p>
+      </div>
+
+      <div class="card">
+        <h3>Atopic Dermatitis (Eczema)</h3>
+        <p><strong>Light skin tones:</strong> Red, inflamed patches with scaling.</p>
+        <p><strong>Medium skin tones:</strong> Purple or gray patches, lichenification.</p>
+        <p><strong>Deep skin tones:</strong> Ashy, thickened, darkened skin with less visible redness.</p>
+        <p><em>Note:</em> Erythema may be under-recognized in deeper skin tones.</p>
+      </div>
+
+      <div class="card">
+        <h3>Psoriasis</h3>
+        <p><strong>Light skin tones:</strong> Bright red plaques with silvery scale.</p>
+        <p><strong>Medium skin tones:</strong> Salmon-colored plaques with gray scale.</p>
+        <p><strong>Deep skin tones:</strong> Violet or dark brown plaques with minimal redness.</p>
+        <p><em>Note:</em> Psoriasis is often underdiagnosed in patients with darker skin.</p>
+      </div>
+    </section>
+
+    <section id="sources">
+      <h2>Sources</h2>
+      <p>Add your sources or references here.</p>
+    </section>
+
+    <section id="founder">
+      <h2>Founder</h2>
+      <p>Information about the founder goes here.</p>
+    </section>
+  </main>
+
+</body>
+</html>
 
