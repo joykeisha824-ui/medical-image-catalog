@@ -35,7 +35,8 @@
     }
 
     header nav a:hover {
-      color: #2563eb;
+      color: #000;
+      font-weight: bold;
     }
 
     main {
@@ -46,7 +47,19 @@
 
     h2 {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Search bar */
+    #search-bar {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.5rem;
+      margin: 0 auto 2rem auto;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
     }
 
     /* Bingo card grid */
@@ -80,20 +93,21 @@
       flex: 1;
       padding: 0.5rem;
       text-align: center;
-      background: #e5e7eb;
+      background: #ccc; /* changed from blue to gray */
       border-radius: 5px;
       cursor: pointer;
       user-select: none;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.2s;
+      color: #000;
     }
 
     .tone:hover {
-      background: #2563eb;
+      background: #000; /* hover black */
       color: white;
     }
 
     .tone.active {
-      background: #2563eb;
+      background: #000; /* active black */
       color: white;
     }
 
@@ -104,7 +118,7 @@
 
     .see-image {
       padding: 0.5rem;
-      background: #2563eb;
+      background: #000; /* changed from blue to black */
       color: white;
       text-align: center;
       border-radius: 5px;
@@ -113,7 +127,7 @@
     }
 
     .see-image:hover {
-      background: #1d4ed8;
+      background: #333;
     }
   </style>
 </head>
@@ -132,9 +146,12 @@
 
   <main>
     <h2>Conditions Library</h2>
-    <div class="grid">
+    <!-- Search Bar -->
+    <input type="text" id="search-bar" placeholder="Search for a condition...">
+
+    <div class="grid" id="card-grid">
       <!-- Card 1: Acne Vulgaris -->
-      <div class="card">
+      <div class="card" data-name="acne vulgaris">
         <h3>Acne Vulgaris</h3>
         <div class="tones">
           <div class="tone" data-tone="light">Light</div>
@@ -146,7 +163,7 @@
       </div>
 
       <!-- Card 2: Atopic Dermatitis -->
-      <div class="card">
+      <div class="card" data-name="atopic dermatitis">
         <h3>Atopic Dermatitis</h3>
         <div class="tones">
           <div class="tone" data-tone="light">Light</div>
@@ -158,7 +175,7 @@
       </div>
 
       <!-- Card 3: Psoriasis -->
-      <div class="card">
+      <div class="card" data-name="psoriasis">
         <h3>Psoriasis</h3>
         <div class="tones">
           <div class="tone" data-tone="light">Light</div>
@@ -170,7 +187,7 @@
       </div>
 
       <!-- Card 4: Hyperpigmentation -->
-      <div class="card">
+      <div class="card" data-name="hyperpigmentation">
         <h3>Hyperpigmentation</h3>
         <div class="tones">
           <div class="tone" data-tone="light">Light</div>
@@ -216,7 +233,7 @@
       hyper: { light: "#", medium: "#", dark: "#" } // Replace '#' with actual image URLs
     };
 
-    // Function to handle click on tone buttons
+    // Tone button functionality
     document.querySelectorAll('.card').forEach(card => {
       const desc = card.querySelector('.description');
       const seeImg = card.querySelector('.see-image');
@@ -224,22 +241,31 @@
 
       tones.forEach(tone => {
         tone.addEventListener('click', () => {
-          // Remove active class from all tones in this card
           tones.forEach(t => t.classList.remove('active'));
           tone.classList.add('active');
 
-          // Get condition key based on card h3 title
           const conditionKey = card.querySelector('h3').textContent.toLowerCase().split(' ')[0];
           const toneKey = tone.dataset.tone;
 
-          // Update description and image link
           desc.textContent = data[conditionKey][toneKey];
           seeImg.href = imgLinks[conditionKey][toneKey];
         });
+      });
+    });
+
+    // Search bar functionality
+    const searchBar = document.getElementById('search-bar');
+    searchBar.addEventListener('input', () => {
+      const query = searchBar.value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        card.style.display = name.includes(query) ? 'flex' : 'none';
       });
     });
   </script>
 
 </body>
 </html>
+
+
 
