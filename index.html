@@ -3,24 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Title</title>
+  <title>Interactive Conditions Library</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      background: #f5f5f5;
     }
 
-    /* Sticky header */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
       background: #ffffff;
       border-bottom: 1px solid #e5e7eb;
-    }
-
-    header nav {
       padding: 1rem;
     }
 
@@ -42,38 +39,81 @@
     }
 
     main {
-      padding-top: 80px; /* space for sticky header */
-    }
-
-    section {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 1rem;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
     }
 
     h2 {
-      margin-bottom: 1rem;
+      text-align: center;
+      margin-bottom: 2rem;
     }
 
-    /* Card styles for Conditions Library */
+    /* Bingo card grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
     .card {
-      border: 1px solid #e5e7eb;
-      border-radius: 0.5rem;
+      background: #fff;
+      border-radius: 10px;
       padding: 1rem;
-      margin-bottom: 1.5rem;
-      background-color: #f9f9f9;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .card h3 {
       margin-top: 0;
     }
 
-    .card p {
-      margin: 0.3rem 0;
+    .tones {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
     }
 
-    em {
-      color: #555;
+    .tone {
+      flex: 1;
+      padding: 0.5rem;
+      text-align: center;
+      background: #e5e7eb;
+      border-radius: 5px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .tone:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    .tone.active {
+      background: #2563eb;
+      color: white;
+    }
+
+    .description {
+      min-height: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .see-image {
+      padding: 0.5rem;
+      background: #2563eb;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .see-image:hover {
+      background: #1d4ed8;
     }
   </style>
 </head>
@@ -91,49 +131,114 @@
   </header>
 
   <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>Write something about your website here.</p>
-    </section>
-
-    <section id="conditions">
-      <h2>Conditions Library</h2>
-
+    <h2>Conditions Library</h2>
+    <div class="grid">
+      <!-- Card 1: Acne Vulgaris -->
       <div class="card">
         <h3>Acne Vulgaris</h3>
-        <p><strong>Light skin tones:</strong> Erythema (redness), inflammatory papules, pustules.</p>
-        <p><strong>Medium skin tones:</strong> Hyperpigmented papules, nodules, less visible redness.</p>
-        <p><strong>Deep skin tones:</strong> Post-inflammatory hyperpigmentation, keloid risk, subtle inflammation.</p>
-        <p><em>Note:</em> Pigment changes and scarring may be more prominent in darker skin tones.</p>
+        <div class="tones">
+          <div class="tone" data-tone="light">Light</div>
+          <div class="tone" data-tone="medium">Medium</div>
+          <div class="tone" data-tone="dark">Dark</div>
+        </div>
+        <div class="description" id="desc-acne"></div>
+        <a href="#" class="see-image" target="_blank" id="img-acne">See Image</a>
       </div>
 
+      <!-- Card 2: Atopic Dermatitis -->
       <div class="card">
-        <h3>Atopic Dermatitis (Eczema)</h3>
-        <p><strong>Light skin tones:</strong> Red, inflamed patches with scaling.</p>
-        <p><strong>Medium skin tones:</strong> Purple or gray patches, lichenification.</p>
-        <p><strong>Deep skin tones:</strong> Ashy, thickened, darkened skin with less visible redness.</p>
-        <p><em>Note:</em> Erythema may be under-recognized in deeper skin tones.</p>
+        <h3>Atopic Dermatitis</h3>
+        <div class="tones">
+          <div class="tone" data-tone="light">Light</div>
+          <div class="tone" data-tone="medium">Medium</div>
+          <div class="tone" data-tone="dark">Dark</div>
+        </div>
+        <div class="description" id="desc-eczema"></div>
+        <a href="#" class="see-image" target="_blank" id="img-eczema">See Image</a>
       </div>
 
+      <!-- Card 3: Psoriasis -->
       <div class="card">
         <h3>Psoriasis</h3>
-        <p><strong>Light skin tones:</strong> Bright red plaques with silvery scale.</p>
-        <p><strong>Medium skin tones:</strong> Salmon-colored plaques with gray scale.</p>
-        <p><strong>Deep skin tones:</strong> Violet or dark brown plaques with minimal redness.</p>
-        <p><em>Note:</em> Psoriasis is often underdiagnosed in patients with darker skin.</p>
+        <div class="tones">
+          <div class="tone" data-tone="light">Light</div>
+          <div class="tone" data-tone="medium">Medium</div>
+          <div class="tone" data-tone="dark">Dark</div>
+        </div>
+        <div class="description" id="desc-psoriasis"></div>
+        <a href="#" class="see-image" target="_blank" id="img-psoriasis">See Image</a>
       </div>
-    </section>
 
-    <section id="sources">
-      <h2>Sources</h2>
-      <p>Add your sources or references here.</p>
-    </section>
-
-    <section id="founder">
-      <h2>Founder</h2>
-      <p>Information about the founder goes here.</p>
-    </section>
+      <!-- Card 4: Hyperpigmentation -->
+      <div class="card">
+        <h3>Hyperpigmentation</h3>
+        <div class="tones">
+          <div class="tone" data-tone="light">Light</div>
+          <div class="tone" data-tone="medium">Medium</div>
+          <div class="tone" data-tone="dark">Dark</div>
+        </div>
+        <div class="description" id="desc-hyper"></div>
+        <a href="#" class="see-image" target="_blank" id="img-hyper">See Image</a>
+      </div>
+    </div>
   </main>
+
+  <script>
+    // Data for each condition and tone
+    const data = {
+      acne: {
+        light: "Erythema (redness), inflammatory papules, pustules.",
+        medium: "Hyperpigmented papules, nodules, less visible redness.",
+        dark: "Post-inflammatory hyperpigmentation, keloid risk, subtle inflammation."
+      },
+      eczema: {
+        light: "Red, inflamed patches with scaling.",
+        medium: "Purple or gray patches, lichenification.",
+        dark: "Ashy, thickened, darkened skin with less visible redness."
+      },
+      psoriasis: {
+        light: "Bright red plaques with silvery scale.",
+        medium: "Salmon-colored plaques with gray scale.",
+        dark: "Violet or dark brown plaques with minimal redness."
+      },
+      hyper: {
+        light: "Mild uneven pigmentation, slight dark spots.",
+        medium: "More noticeable dark patches and blotches.",
+        dark: "Deeply pigmented areas, more prone to contrast with surrounding skin."
+      }
+    };
+
+    // Image links for each condition and tone
+    const imgLinks = {
+      acne: { light: "#", medium: "#", dark: "#" },
+      eczema: { light: "#", medium: "#", dark: "#" },
+      psoriasis: { light: "#", medium: "#", dark: "#" },
+      hyper: { light: "#", medium: "#", dark: "#" } // Replace '#' with actual image URLs
+    };
+
+    // Function to handle click on tone buttons
+    document.querySelectorAll('.card').forEach(card => {
+      const desc = card.querySelector('.description');
+      const seeImg = card.querySelector('.see-image');
+      const tones = card.querySelectorAll('.tone');
+
+      tones.forEach(tone => {
+        tone.addEventListener('click', () => {
+          // Remove active class from all tones in this card
+          tones.forEach(t => t.classList.remove('active'));
+          tone.classList.add('active');
+
+          // Get condition key based on card h3 title
+          const conditionKey = card.querySelector('h3').textContent.toLowerCase().split(' ')[0];
+          const toneKey = tone.dataset.tone;
+
+          // Update description and image link
+          desc.textContent = data[conditionKey][toneKey];
+          seeImg.href = imgLinks[conditionKey][toneKey];
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
