@@ -5,36 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Interactive Skin Conditions Library</title>
 <style>
-  body { font-family: Arial, sans-serif; background: #f5f5f5; margin:0; padding:0; }
-  header { position: sticky; top:0; background:#fff; border-bottom:1px solid #e5e7eb; padding:1rem; z-index:100; }
-  header nav div { max-width:900px; margin:auto; display:flex; gap:1.5rem; font-weight:500; }
-  header nav a { text-decoration:none; color:#000; }
-  header nav a:hover { font-weight:bold; }
-
-  main { padding:2rem; max-width:1200px; margin:auto; }
-  h2 { text-align:center; margin-bottom:1rem; }
-
-  #search-bar { width:100%; max-width:400px; padding:0.5rem; margin:0 auto 2rem auto; display:block; border:1px solid #ccc; border-radius:5px; }
-
-  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:1rem; }
-
-  .card { background:#fff; border-radius:10px; padding:1rem; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.1); position:relative; display:flex; flex-direction:column; justify-content:space-between; }
-
-  .card h3 { margin:0; font-size:1rem; flex:1; display:flex; align-items:center; justify-content:center; }
-
-  .more-btn { padding:0.4rem 0.6rem; background:#000; color:#fff; border-radius:5px; cursor:pointer; margin-top:0.5rem; font-size:0.85rem; align-self:flex-end; text-decoration:none; }
-
+  body{font-family:Arial,sans-serif;background:#f5f5f5;margin:0;padding:0;}
+  header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e5e7eb;padding:1rem;z-index:100;}
+  header nav div{max-width:900px;margin:auto;display:flex;gap:1.5rem;font-weight:500;}
+  header nav a{text-decoration:none;color:#000;} header nav a:hover{font-weight:bold;}
+  main{padding:2rem;max-width:1200px;margin:auto;}
+  h2{text-align:center;margin-bottom:1rem;}
+  #search-bar{width:100%;max-width:400px;padding:0.5rem;margin:0 auto 2rem auto;display:block;border:1px solid #ccc;border-radius:5px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;}
+  .card{background:#fff;border-radius:10px;padding:1rem;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.1);position:relative;display:flex;flex-direction:column;justify-content:space-between;}
+  .card h3{margin:0;font-size:1rem;flex:1;display:flex;align-items:center;justify-content:center;}
+  .more-btn{padding:0.4rem 0.6rem;background:#000;color:#fff;border-radius:5px;cursor:pointer;margin-top:0.5rem;font-size:0.85rem;align-self:flex-end;text-decoration:none;}
   /* Modal */
-  .modal-bg { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000; }
-  .modal { background:#fff; border-radius:10px; padding:1.5rem; max-width:800px; width:90%; max-height:90%; overflow-y:auto; position:relative; }
-  .modal h3 { margin-top:0; }
-  .modal .tones { margin-bottom:1rem; display:flex; gap:0.5rem; }
-  .modal .tone { flex:1; padding:0.5rem; text-align:center; background:#ccc; border-radius:5px; cursor:pointer; user-select:none; color:#000; }
-  .modal .tone:hover, .modal .tone.active { background:#000; color:white; }
-  .modal .description { margin-bottom:1rem; }
-  .modal .images { display:grid; grid-template-columns:repeat(2,1fr); gap:0.5rem; margin-bottom:1rem; }
-  .modal .images img { width:100%; border-radius:5px; }
-  .modal .close { position:absolute; top:1rem; right:1rem; cursor:pointer; background:#000; color:#fff; padding:0.3rem 0.6rem; border-radius:5px; }
+  .modal-bg{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);justify-content:center;align-items:center;z-index:1000;}
+  .modal{background:#fff;border-radius:10px;padding:1.5rem;max-width:800px;width:90%;max-height:90%;overflow-y:auto;position:relative;}
+  .modal h3{margin-top:0;}
+  .modal .tones{margin-bottom:1rem;display:flex;gap:0.5rem;}
+  .modal .tone{flex:1;padding:0.5rem;text-align:center;background:#ccc;border-radius:5px;cursor:pointer;user-select:none;color:#000;}
+  .modal .tone:hover, .modal .tone.active{background:#000;color:white;}
+  .modal .description{margin-bottom:1rem;}
+  .modal .images{display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem;margin-bottom:1rem;}
+  .modal .images img{width:100%;border-radius:5px;}
+  .modal .close{position:absolute;top:1rem;right:1rem;cursor:pointer;background:#000;color:#fff;padding:0.3rem 0.6rem;border-radius:5px;}
+  #pagination{text-align:center;margin-top:1rem;}
+  #pagination button{padding:0.5rem 0.8rem;margin:0 0.3rem;border-radius:5px;background:#000;color:#fff;border:none;cursor:pointer;}
+  #pagination button:hover{background:#333;}
 </style>
 </head>
 <body>
@@ -53,8 +48,11 @@
 <main>
   <h2>Conditions Library</h2>
   <input type="text" id="search-bar" placeholder="Search for a condition...">
-  <div class="grid" id="card-grid">
-    <!-- Cards dynamically generated -->
+  <div class="grid" id="card-grid"></div>
+  <div id="pagination">
+    <button id="prev-btn">Previous</button>
+    <span id="page-num">1</span>
+    <button id="next-btn">Next</button>
   </div>
 </main>
 
@@ -74,68 +72,70 @@
 </div>
 
 <script>
-const conditions = [
-  {name:"Acne Vulgaris", key:"acne"},
-  {name:"Atopic Dermatitis", key:"eczema"},
-  {name:"Psoriasis", key:"psoriasis"},
-  {name:"Hyperpigmentation", key:"hyper"},
-  // add more as needed
-];
+const totalConditions = 2000; // simulate 2000 conditions
+const conditions = [];
+for(let i=1;i<=totalConditions;i++){
+  conditions.push({name:`Condition ${i}`, key:`cond${i}`});
+}
 
-const data = {
-  acne:{light:"Red papules & pustules", medium:"Hyperpigmented nodules", dark:"Keloid risk & subtle inflammation"},
-  eczema:{light:"Red, inflamed patches", medium:"Grayish patches", dark:"Ashy thickened skin"},
-  psoriasis:{light:"Bright red plaques", medium:"Salmon plaques", dark:"Violet or dark brown plaques"},
-  hyper:{light:"Mild uneven pigmentation", medium:"Noticeable dark patches", dark:"Deeply pigmented areas"}
-};
-
-const imgLinks = {
-  acne:{light:["#","#"], medium:["#","#"], dark:["#","#"]},
-  eczema:{light:["#","#"], medium:["#","#"], dark:["#","#"]},
-  psoriasis:{light:["#","#"], medium:["#","#"], dark:["#","#"]},
-  hyper:{light:["#","#"], medium:["#","#"], dark:["#","#"]}
-};
-
-// Generate cards
-const grid = document.getElementById("card-grid");
+// Simulated data and images for demonstration
+const data = {}, imgLinks = {};
 conditions.forEach(c=>{
-  const card = document.createElement("div");
-  card.className = "card";
-  card.dataset.name = c.name.toLowerCase();
-  card.innerHTML = `<h3>${c.name}</h3><a href="#" class="more-btn">More Info</a>`;
-  grid.appendChild(card);
+  data[c.key] = {light:"Light symptoms", medium:"Medium symptoms", dark:"Dark symptoms"};
+  imgLinks[c.key] = {light:["#","#"], medium:["#","#"], dark:["#","#"]};
 });
 
-// Modal
-const modalBg = document.getElementById("modal-bg");
-const modalTitle = document.getElementById("modal-title");
-const modalDesc = document.getElementById("modal-desc");
-const modalImages = document.getElementById("modal-images");
-const toneButtons = document.querySelectorAll(".modal .tone");
-const closeBtn = document.getElementById("modal-close");
+const cardsPerPage = 50;
+let currentPage = 1;
+const grid = document.getElementById("card-grid");
 
-grid.addEventListener("click", e=>{
-  if(e.target.classList.contains("more-btn")){
-    e.preventDefault();
-    const card = e.target.parentElement;
-    const key = card.dataset.name.split(" ")[0];
-    modalTitle.textContent = card.dataset.name;
-    modalDesc.textContent = data[key].light;
-    updateImages(key,"light");
-    modalBg.style.display="flex";
-    toneButtons.forEach(t=>t.classList.remove("active"));
-    toneButtons[0].classList.add("active");
-    modalBg.dataset.key = key;
+function renderPage(page){
+  grid.innerHTML="";
+  const start=(page-1)*cardsPerPage;
+  const end=Math.min(start+cardsPerPage,conditions.length);
+  for(let i=start;i<end;i++){
+    const c=conditions[i];
+    const card=document.createElement("div");
+    card.className="card";
+    card.dataset.name=c.name.toLowerCase();
+    card.innerHTML=`<h3>${c.name}</h3><a href="#" class="more-btn">More Info</a>`;
+    grid.appendChild(card);
   }
-});
+  attachCardEvents();
+  document.getElementById("page-num").innerText=currentPage;
+}
+
+function attachCardEvents(){
+  grid.querySelectorAll(".more-btn").forEach(btn=>{
+    btn.onclick=function(e){
+      e.preventDefault();
+      const card=this.parentElement;
+      const key=card.dataset.name.split(" ")[1]? "cond"+card.dataset.name.split(" ")[1]:card.dataset.name;
+      modalTitle.textContent=card.dataset.name;
+      modalDesc.textContent=data[key].light;
+      updateImages(key,"light");
+      modalBg.style.display="flex";
+      toneButtons.forEach(t=>t.classList.remove("active"));
+      toneButtons[0].classList.add("active");
+      modalBg.dataset.key=key;
+    }
+  });
+}
+
+const modalBg=document.getElementById("modal-bg");
+const modalTitle=document.getElementById("modal-title");
+const modalDesc=document.getElementById("modal-desc");
+const modalImages=document.getElementById("modal-images");
+const toneButtons=document.querySelectorAll(".modal .tone");
+const closeBtn=document.getElementById("modal-close");
 
 toneButtons.forEach(btn=>{
   btn.addEventListener("click",()=>{
     toneButtons.forEach(t=>t.classList.remove("active"));
     btn.classList.add("active");
-    const key = modalBg.dataset.key;
-    const tone = btn.dataset.tone;
-    modalDesc.textContent = data[key][tone];
+    const key=modalBg.dataset.key;
+    const tone=btn.dataset.tone;
+    modalDesc.textContent=data[key][tone];
     updateImages(key,tone);
   });
 });
@@ -145,23 +145,34 @@ closeBtn.addEventListener("click",()=>{ modalBg.style.display="none"; });
 function updateImages(key,tone){
   modalImages.innerHTML="";
   imgLinks[key][tone].forEach(src=>{
-    const img = document.createElement("img");
+    const img=document.createElement("img");
     img.src=src;
     modalImages.appendChild(img);
   });
 }
 
+// Pagination
+document.getElementById("prev-btn").addEventListener("click",()=>{
+  if(currentPage>1){currentPage--; renderPage(currentPage);}
+});
+document.getElementById("next-btn").addEventListener("click",()=>{
+  if(currentPage*cardsPerPage<conditions.length){currentPage++; renderPage(currentPage);}
+});
+
 // Search
 document.getElementById("search-bar").addEventListener("input",e=>{
   const q=e.target.value.toLowerCase();
   document.querySelectorAll(".card").forEach(c=>{
-    c.style.display = c.dataset.name.includes(q) ? "flex":"none";
+    c.style.display=c.dataset.name.includes(q)?"flex":"none";
   });
 });
+
+renderPage(currentPage);
 </script>
 
 </body>
 </html>
+
 
 
 
