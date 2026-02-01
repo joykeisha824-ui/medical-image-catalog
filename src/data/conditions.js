@@ -3,19 +3,21 @@ export const CONDITIONS_DAY_1 = [
     id: "acne_vulgaris",
     name: "Acne Vulgaris (Acne)",
     category: "Inflammatory",
+    medicalName: "Acne Vulgaris",
+    commonName: "Acne",
     description: {
-      light: "A common inflammatory condition of the oil glands and hair follicles causing pimples, pustules, and sometimes cysts.",
-      dark: "An inflammatory condition often presenting with dark marks after healing and a higher risk of thick or raised scars.",
-      vitiligo: "Acne occurring on depigmented skin, where redness, scarring, and contrast are more noticeable."
+      light: "A common inflammatory condition of oil glands and hair follicles.",
+      dark: "Often leaves dark marks and higher risk of thick scars.",
+      vitiligo: "Inflammation and scarring are more visually prominent."
     },
     symptoms: {
       light: ["Whiteheads", "Blackheads", "Red pimples"],
-      dark: ["Dark papules", "Nodules", "Post-inflammatory hyperpigmentation"],
-      vitiligo: ["Inflammatory bumps on depigmented skin"]
+      dark: ["Papules", "Nodules", "Dark spots"],
+      vitiligo: ["Inflammatory bumps"]
     },
     risks: {
       light: ["Permanent scarring"],
-      dark: ["Keloids", "Long-lasting dark spots"],
+      dark: ["Keloids", "Hyperpigmentation"],
       vitiligo: ["High-contrast scarring"]
     },
     images: {
@@ -28,16 +30,18 @@ export const CONDITIONS_DAY_1 = [
   {
     id: "atopic_dermatitis",
     name: "Atopic Dermatitis (Eczema)",
-    category: "Inflammatory",
+    category: "Eczema",
+    medicalName: "Atopic Dermatitis",
+    commonName: "Eczema",
     description: {
-      light: "A chronic itchy skin condition causing redness, dryness, and irritation.",
-      dark: "Often appears as darker, thickened patches with intense itching rather than redness.",
-      vitiligo: "Eczema affecting depigmented skin, making irritation and texture changes more visible."
+      light: "Chronic itchy rash with redness and dryness.",
+      dark: "Thickened dark patches with intense itching.",
+      vitiligo: "Texture changes stand out on depigmented skin."
     },
     symptoms: {
       light: ["Red patches", "Dry skin", "Itching"],
-      dark: ["Hyperpigmented patches", "Skin thickening", "Severe itching"],
-      vitiligo: ["Dry, inflamed areas on depigmented skin"]
+      dark: ["Hyperpigmentation", "Lichenification"],
+      vitiligo: ["Dry inflamed patches"]
     },
     risks: {
       light: ["Skin infections"],
@@ -52,22 +56,24 @@ export const CONDITIONS_DAY_1 = [
   },
 
   {
-    id: "psoriasis",
+    id: "psoriasis_vulgaris",
     name: "Psoriasis Vulgaris (Psoriasis)",
     category: "Autoimmune",
+    medicalName: "Psoriasis Vulgaris",
+    commonName: "Psoriasis",
     description: {
-      light: "An autoimmune condition causing red plaques with silvery scale.",
-      dark: "Plaques often appear purple, brown, or gray with thick scaling.",
-      vitiligo: "Psoriatic plaques on depigmented skin may appear sharply outlined."
+      light: "Red plaques with silvery scale.",
+      dark: "Purple, brown, or gray plaques with thick scale.",
+      vitiligo: "Sharply outlined plaques on depigmented skin."
     },
     symptoms: {
-      light: ["Red plaques", "Silvery scales"],
-      dark: ["Dark plaques", "Thick scaling"],
-      vitiligo: ["Raised scaly patches"]
+      light: ["Red plaques", "Silvery scale"],
+      dark: ["Dark plaques", "Scaling"],
+      vitiligo: ["Raised scaly lesions"]
     },
     risks: {
       light: ["Psoriatic arthritis"],
-      dark: ["Misdiagnosis and delayed care"],
+      dark: ["Delayed diagnosis"],
       vitiligo: ["Severe contrast lesions"]
     },
     images: {
@@ -79,21 +85,23 @@ export const CONDITIONS_DAY_1 = [
 
   {
     id: "rosacea",
-    name: "Rosacea (Chronic Facial Redness)",
+    name: "Rosacea",
     category: "Inflammatory",
+    medicalName: "Rosacea",
+    commonName: "Chronic Facial Redness",
     description: {
-      light: "A chronic facial condition causing redness, flushing, and visible blood vessels.",
-      dark: "Often presents with burning, swelling, and acne-like bumps rather than redness.",
-      vitiligo: "Inflammation on depigmented skin may appear more intense."
+      light: "Facial redness, flushing, and visible vessels.",
+      dark: "Burning, swelling, and acne-like bumps.",
+      vitiligo: "Inflammation appears more intense."
     },
     symptoms: {
-      light: ["Facial redness", "Flushing"],
-      dark: ["Papules", "Burning sensation"],
-      vitiligo: ["Inflammatory facial lesions"]
+      light: ["Flushing", "Redness"],
+      dark: ["Papules", "Burning"],
+      vitiligo: ["Facial inflammation"]
     },
     risks: {
       light: ["Eye involvement"],
-      dark: ["Delayed diagnosis"],
+      dark: ["Delayed recognition"],
       vitiligo: ["Skin sensitivity"]
     },
     images: {
@@ -105,42 +113,62 @@ export const CONDITIONS_DAY_1 = [
 
   {
     id: "vitiligo",
-    name: "Vitiligo (Depigmentation Disorder)",
+    name: "Vitiligo",
     category: "Pigmentary",
+    medicalName: "Vitiligo",
+    commonName: "Depigmentation Disorder",
     description: {
-      light: "Loss of skin pigment causing white patches.",
-      dark: "Highly visible depigmented patches with sharp borders.",
-      vitiligo: "Condition affecting multiple areas with varying pigment loss."
+      light: "Loss of pigment causing white patches.",
+      dark: "Highly visible depigmented areas.",
+      vitiligo: "Variable pigment loss across the body."
     },
     symptoms: {
       light: ["White patches"],
-      dark: ["Depigmented areas"],
-      vitiligo: ["Expanding pigment loss"]
+      dark: ["Depigmented skin"],
+      vitiligo: ["Progressive spread"]
     },
     risks: {
       light: ["Sun sensitivity"],
       dark: ["Psychological distress"],
-      vitiligo: ["Progressive spread"]
+      vitiligo: ["Expansion over time"]
     },
     images: {
       light: ["vitiligo/light1.jpg", "vitiligo/light2.jpg"],
       dark: ["vitiligo/dark1.jpg", "vitiligo/dark2.jpg"],
       vitiligo: ["vitiligo/self1.jpg", "vitiligo/self2.jpg"]
     }
+  },
+
+  {
+    id: "seborrheic_dermatitis",
+    name: "Seborrheic Dermatitis",
+    category: "Inflammatory",
+    medicalName: "Seborrheic Dermatitis",
+    commonName: "Dandruff",
+    description: {
+      light: "Flaky red patches on scalp and face.",
+      dark: "Flaking with pigment change.",
+      vitiligo: "Flakes contrast strongly."
+    },
+    symptoms: {
+      light: ["Flaking", "Redness"],
+      dark: ["Scaling", "Discoloration"],
+      vitiligo: ["Flaking patches"]
+    },
+    risks: {
+      light: ["Chronic recurrence"],
+      dark: ["Persistent discoloration"],
+      vitiligo: ["Skin irritation"]
+    },
+    images: {
+      light: ["sebderm/light1.jpg", "sebderm/light2.jpg"],
+      dark: ["sebderm/dark1.jpg", "sebderm/dark2.jpg"],
+      vitiligo: ["sebderm/vitiligo1.jpg", "sebderm/vitiligo2.jpg"]
+    }
   }
 
-  // Conditions 6–25 continue next message
 ];
-,
-{
-  id: "seborrheic_dermatitis",
-  name: "Seborrheic Dermatitis (Dandruff)",
-  category: "Inflammatory",
-  description: {
-    light: "A common skin condition causing redness and flaky scales, especially on the scalp and face.",
-    dark: "Often presents with flaky patches and lighter or darker discoloration rather than redness.",
-    vitiligo: "Flaking and irritation on depigmented skin, often with noticeable contrast."
-  },
+
   symptoms: {
     light: ["Flaking", "Red patches"],
     dark: ["Scaly patches", "Color changes"],
